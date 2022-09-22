@@ -20,7 +20,10 @@ function countrySearch(evt) {
 
   fetchCountries(name)
     .then(renderCountries)
-    .catch(error => Notify.failure('Oops, there is no country with that name'));
+    .catch(error => {
+      Notify.failure('Oops, there is no country with that name');
+    });
+  
 }
 
 function renderCountries(countries) {
@@ -30,7 +33,7 @@ function renderCountries(countries) {
     Notify.info('Too many matches found. Please enter a more specific name.');
     return;
   }
-  if (countries.length >= 2 && countries.length < 10) {
+  if (countries.length >= 2 && countries.length <= 10) {
     renderCountriesList(countries);
     return;
   }
